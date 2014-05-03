@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * @author Sebastian Madajczyk, sebastian@madajczyk.net
+ * @author Sebastian Madajczyk, vimfan@gmail.com
  * @date 03.05.2014
  */
 
