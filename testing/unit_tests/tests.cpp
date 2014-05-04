@@ -7,8 +7,15 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-TEST(Wrappers, test)
+#include <ct/constrained_types.hpp>
+
+
+TYPE(BoundedInt, int);
+
+TEST(ConstrainedType, shouldBeDefaultConstructible)
 {
+    BoundedInt v;
+    (void) v;
 }
 
 
