@@ -18,6 +18,11 @@ TEST(ConstrainedType, shouldBeDefaultConstructible)
     (void) v;
 }
 
+TEST(ConstrainedType, shouldBeConstructibleByValueOfUnderlyingType)
+{
+    int i = 5;
+    BoundedInt v(i);
+}
 
 int main(int argc, char **argv)
 {

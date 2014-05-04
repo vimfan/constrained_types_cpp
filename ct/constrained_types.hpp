@@ -7,6 +7,11 @@
 #define TYPE(TypeName, baseType) \
     class TypeName               \
     {                            \
+    public:                      \
+        TypeName() {}            \
+                                 \
+        TypeName(baseType)       \
+        {}                       \
     }
 
 namespace ct
