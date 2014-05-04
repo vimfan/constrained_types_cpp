@@ -4,5 +4,4 @@ project(constrained_types)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
 
 enable_testing()
-add_subdirectory(testing/unit_tests)
-add_subdirectory(testing/performance_tests)
+add_subdirectory(testing)

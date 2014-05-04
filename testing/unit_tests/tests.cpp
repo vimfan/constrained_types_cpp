@@ -24,6 +24,10 @@ TEST(ConstrainedType, shouldBeConstructibleByValueOfUnderlyingType)
     BoundedInt v(i);
 }
 
+TEST(ConstrainedType, shouldBeConstructibleExplicitly)
+{
+}
+
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv); 

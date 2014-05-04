@@ -1,0 +1,3 @@
+add_subdirectory(utils)
+add_subdirectory(performance_tests)
+add_subdirectory(unit_tests)
