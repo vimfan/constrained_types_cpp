@@ -7,6 +7,10 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get -qq install cmake
   - sudo apt-get install libgtest-dev
+  - cd /usr/src/gtest
+  - sudo cmake .
+  - sudo make
+  - sudo mv libg* /usr/lib/
   - sudo apt-get install google-mock
 
 script:
