@@ -7,7 +7,14 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include <testing/utils/utils.hpp>
 #include <ct/constrained_types.hpp>
+
+namespace ct
+{
+
+namespace ut
+{
 
 
 TYPE(BoundedInt, int);
@@ -26,7 +33,12 @@ TEST(ConstrainedType, shouldBeConstructibleByValueOfUnderlyingType)
 
 TEST(ConstrainedType, shouldBeConstructibleExplicitly)
 {
+    ASSERT_FALSE((utils::HasNonExplicitCopyConstructor<BoundedInt, int, 5>::value));
 }
+
+} // namespace ut
+
+} // namespace ct
 
 int main(int argc, char **argv)
 {
