@@ -17,7 +17,7 @@ namespace ut
 {
 
 
-TYPE(BoundedInt, int);
+CONSTRAINED_TYPE(BoundedInt, int);
 
 TEST(ConstrainedType, shouldBeDefaultConstructible)
 {
@@ -34,6 +34,12 @@ TEST(ConstrainedType, shouldBeConstructibleByValueOfUnderlyingType)
 TEST(ConstrainedType, shouldBeConstructibleExplicitly)
 {
     ASSERT_FALSE((utils::HasNonExplicitCopyConstructor<BoundedInt, int, 5>::value));
+}
+
+TEST(ConstrainedType, shouldSupportAssignmentOperatorThatAcceptsUnderlyingType)
+{
+    //BoundedInt v;
+    //v = 5;
 }
 
 } // namespace ut

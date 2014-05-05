@@ -1,0 +1,22 @@
+language: cpp
+
+compiler:
+  - gcc
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get -qq install cmake
+
+script:
+    make
+
+branches:
+  only:
+    - master
+
+notifications:
+  recipients:
+    - sebastian@madajczyk.net
+  email:
+    on_success: change
+    on_failure: always

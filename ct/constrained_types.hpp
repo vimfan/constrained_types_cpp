@@ -4,14 +4,14 @@
  * @date 04.05.2014
  */
 
-#define TYPE(TypeName, baseType)          \
-    class TypeName                        \
-    {                                     \
-    public:                               \
-        TypeName() {}                     \
-                                          \
-        explicit TypeName(baseType)       \
-        {}                                \
+#define CONSTRAINED_TYPE(TypeName, baseType)          \
+    class TypeName                                    \
+    {                                                 \
+    public:                                           \
+        TypeName() {}                                 \
+                                                      \
+        explicit TypeName(baseType)                   \
+        {}                                            \
     }
 
 namespace ct
