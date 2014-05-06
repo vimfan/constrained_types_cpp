@@ -14,9 +14,13 @@ before_install:
   - sudo mv libg* /usr/lib/
   - sudo apt-get install google-mock
   - popd
+  - sudo pip install cpp-coveralls
 
 script:
     make
+
+after_install:
+  - coveralls
 
 branches:
   only:
