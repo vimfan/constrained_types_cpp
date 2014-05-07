@@ -49,6 +49,13 @@ TEST(ConstrainedType, shouldSupportAssignmentOfUnderlyingType)
     v1 = int(5);
 }
 
+TEST(ConstrainedType, shouldBePossibleToGetValueOfUnderlyingType)
+{
+    BoundedInt v(5);
+    ASSERT_EQ(v.get(), 5);
+}
+
+
 } // namespace ut
 
 } // namespace ct

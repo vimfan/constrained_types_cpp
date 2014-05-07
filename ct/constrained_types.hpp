@@ -20,6 +20,8 @@
             return *this;                             \
         }                                             \
                                                       \
+        ValueType get() const { return value; }       \
+                                                      \
     private:                                          \
         ValueType value;                              \
     }
