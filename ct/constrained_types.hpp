@@ -4,14 +4,24 @@
  * @date 04.05.2014
  */
 
-#define CONSTRAINED_TYPE(TypeName, baseType)          \
+#define CONSTRAINED_TYPE(TypeName, ValueType)         \
     class TypeName                                    \
     {                                                 \
     public:                                           \
-        TypeName() {}                                 \
+        TypeName() : value(0) {}                      \
                                                       \
-        explicit TypeName(baseType)                   \
+        explicit TypeName(ValueType val)              \
+            : value(val)                              \
         {}                                            \
+                                                      \
+        TypeName& operator=(ValueType val)            \
+        {                                             \
+            value = val;                              \
+            return *this;                             \
+        }                                             \
+                                                      \
+    private:                                          \
+        ValueType value;                              \
     }
 
 namespace ct

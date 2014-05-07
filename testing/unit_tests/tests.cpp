@@ -31,6 +31,11 @@ TEST(ConstrainedType, shouldBeConstructibleByValueOfUnderlyingType)
     BoundedInt v(i);
 }
 
+TEST(ConstrainedType, shouldBeConstructibleExplicitly)
+{
+    ASSERT_FALSE((utils::HasNonExplicitCopyConstructor<BoundedInt, int, 5>::value));
+}
+
 TEST(ConstrainedType, shouldBeCopyable)
 {
     BoundedInt v1(1);
@@ -38,9 +43,10 @@ TEST(ConstrainedType, shouldBeCopyable)
     BoundedInt v3 = (v1 = v2);
 }
 
-TEST(ConstrainedType, shouldBeConstructibleExplicitly)
+TEST(ConstrainedType, shouldSupportAssignmentOfUnderlyingType)
 {
-    ASSERT_FALSE((utils::HasNonExplicitCopyConstructor<BoundedInt, int, 5>::value));
+    BoundedInt v1;
+    v1 = int(5);
 }
 
 } // namespace ut
