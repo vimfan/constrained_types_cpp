@@ -4,12 +4,21 @@
  * @date 04.05.2014
  */
 
-// Seems to be risky
+// Seems to be risky, using traits should minimize or get rid of risk (e.g.
+// IsConstrainedType<U>)
 template <typename T, typename U>
 inline bool operator==(T p1, U p2)
 {
     return p2 == p1;
 }
+
+template <typename T, typename U>
+inline U operator+(T p1, U p2)
+{
+    return p2 + p1;
+}
+
+// risky end
 
 #define CONSTRAINED_TYPE(TypeName, ValueType)         \
     class TypeName                                    \

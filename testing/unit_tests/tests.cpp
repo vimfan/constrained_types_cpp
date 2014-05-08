@@ -86,11 +86,18 @@ TEST(ConstrainedType, shouldSupportAddition)
     ASSERT_TRUE(v3 == v1.get() + v2.get());
 }
 
-TEST(ConstrainedType, shouldSupportAdditionOfUnderlyingType)
+TEST(ConstrainedType, shouldSupportAdditionOnTheRightHandValueOfUnderlyingType)
 {
     BoundedInt v(7);
     BoundedInt v2 = v + 5;
-    //ASSERT_EQ(12, v2);
+    ASSERT_TRUE(v2 == 7 + 5);
+}
+
+TEST(ConstrainedType, shouldSupportAdditionOnTheLeftHandValueOfUnderlyingType)
+{
+    BoundedInt v(7);
+    BoundedInt v2 = 5 + v;
+    ASSERT_TRUE(v2 == 7 + 5);
 }
 
 
