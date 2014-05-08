@@ -65,7 +65,13 @@ TEST(ConstrainedType, shouldSupportComparison)
     ASSERT_TRUE(v == v);
 }
 
-TEST(ConstrainedType, shouldSupportComparisonToUnderlyingType)
+TEST(ConstrainedType, shouldSupportComparisonToUnderlyingTypeWhenSimpleTypeIsOnLeft)
+{
+    BoundedInt v(7);
+    ASSERT_TRUE(7 == v);
+}
+
+TEST(ConstrainedType, shouldSupportComparisonToUnderlyingTypeWhenSimpleTypeIsOnRight)
 {
     BoundedInt v(7);
     ASSERT_TRUE(v == 7);
@@ -77,8 +83,16 @@ TEST(ConstrainedType, shouldSupportAddition)
     BoundedInt v2(9);
     BoundedInt v3 = v1 + v2;
 
-    ASSERT_EQ(v3, BoundedInt(v1.get() + v2.get()));
+    ASSERT_TRUE(v3 == v1.get() + v2.get());
 }
+
+TEST(ConstrainedType, shouldSupportAdditionOfUnderlyingType)
+{
+    BoundedInt v(7);
+    BoundedInt v2 = v + 5;
+    //ASSERT_EQ(12, v2);
+}
+
 
 } // namespace ut
 

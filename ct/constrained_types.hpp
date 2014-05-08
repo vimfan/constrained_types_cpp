@@ -4,6 +4,13 @@
  * @date 04.05.2014
  */
 
+// Seems to be risky
+template <typename T, typename U>
+inline bool operator==(T p1, U p2)
+{
+    return p2 == p1;
+}
+
 #define CONSTRAINED_TYPE(TypeName, ValueType)         \
     class TypeName                                    \
     {                                                 \
@@ -31,6 +38,8 @@
         TypeName operator+(TypeName rhs) const        \
         { return TypeName(value + rhs.get()); }       \
                                                       \
+        TypeName operator+(ValueType rhs) const       \
+        { return TypeName(value + rhs); }             \
                                                       \
     private:                                          \
         ValueType value;                              \
