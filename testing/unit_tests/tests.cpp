@@ -59,6 +59,27 @@ TEST(ConstrainedType, shouldBePossibleToGetValueOfUnderlyingType)
     ASSERT_EQ(v.get(), 5);
 }
 
+TEST(ConstrainedType, shouldSupportComparison)
+{
+    BoundedInt v(5);
+    ASSERT_TRUE(v == v);
+}
+
+TEST(ConstrainedType, shouldSupportComparisonToUnderlyingType)
+{
+    BoundedInt v(7);
+    ASSERT_TRUE(v == 7);
+}
+
+//TEST(ConstrainedType, shouldSupportAddition)
+//{
+//    BoundedInt v1(7);
+//    BoundedInt v2(9);
+//    BoundedInt v3 = v1 + v2;
+//
+//    ASSERT_EQ();
+//}
+
 } // namespace ut
 
 } // namespace ct

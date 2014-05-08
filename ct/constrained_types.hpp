@@ -22,6 +22,12 @@
                                                       \
         ValueType get() const { return value; }       \
                                                       \
+        bool operator==(TypeName rhs)                 \
+        { return rhs.value == value; }                \
+                                                      \
+        bool operator==(ValueType rhs)                \
+        { return rhs == value; }                      \
+                                                      \
     private:                                          \
         ValueType value;                              \
     }
