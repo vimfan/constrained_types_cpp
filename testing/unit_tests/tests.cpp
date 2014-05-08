@@ -100,6 +100,14 @@ TEST(ConstrainedType, shouldSupportAdditionOnTheLeftHandValueOfUnderlyingType)
     ASSERT_TRUE(v2 == 7 + 5);
 }
 
+TEST(ConstrainedType, shouldSupportMultiplication)
+{
+    BoundedInt v1(5);
+    BoundedInt v2(6);
+    
+    ASSERT_TRUE(v1 * v2 == 5 * 6);
+}
+
 
 } // namespace ut
 

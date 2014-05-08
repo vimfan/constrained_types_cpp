@@ -5,7 +5,7 @@
  */
 
 // Seems to be risky, using traits should minimize or get rid of risk (e.g.
-// IsConstrainedType<U>)
+// IsConstrainedType<U>), on the other hand could have huge impact on compilation times
 template <typename T, typename U>
 inline bool operator==(T p1, U p2)
 {
@@ -16,6 +16,24 @@ template <typename T, typename U>
 inline U operator+(T p1, U p2)
 {
     return p2 + p1;
+}
+
+template <typename T, typename U>
+inline U operator*(T p1, U p2)
+{
+    return U(p1 * p2.get());
+}
+
+template <typename T, typename U>
+inline T operator*(T p1, U p2)
+{
+    return p2 * p1;
+}
+
+template <typename T>
+inline T operator*(T p1, T p2)
+{
+    return T(p1.get() * p2.get());
 }
 
 // risky end
