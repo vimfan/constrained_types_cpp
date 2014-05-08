@@ -13,4 +13,4 @@ target_link_libraries(
     pthread
 )
 
-add_test(run_unit_tests utils_tests)
+add_test(run_utils_tests utils_tests)
