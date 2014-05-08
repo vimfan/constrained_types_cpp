@@ -2,8 +2,8 @@ ifeq ($(CXX),)
 	CXX=g++
 endif
 
-
-BUILD_DIR=build/build_$(CXX)
+BUILD_DIR_PARENT=build
+BUILD_DIR=$(BUILD_DIR_PARENT)/build_$(CXX)
 
 .PHONY: all rebuild tests
 
@@ -29,4 +29,4 @@ tags:
 	ctags -R .
 
 clean:
-	rm -Rf $(BUILD_DIR)
+	rm -Rf $(BUILD_DIR_PARENT)

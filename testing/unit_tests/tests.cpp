@@ -71,14 +71,14 @@ TEST(ConstrainedType, shouldSupportComparisonToUnderlyingType)
     ASSERT_TRUE(v == 7);
 }
 
-//TEST(ConstrainedType, shouldSupportAddition)
-//{
-//    BoundedInt v1(7);
-//    BoundedInt v2(9);
-//    BoundedInt v3 = v1 + v2;
-//
-//    ASSERT_EQ();
-//}
+TEST(ConstrainedType, shouldSupportAddition)
+{
+    BoundedInt v1(7);
+    BoundedInt v2(9);
+    BoundedInt v3 = v1 + v2;
+
+    ASSERT_EQ(v3, BoundedInt(v1.get() + v2.get()));
+}
 
 } // namespace ut
 
