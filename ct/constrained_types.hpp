@@ -21,19 +21,7 @@ inline U operator+(T p1, U p2)
 template <typename T, typename U>
 inline U operator*(T p1, U p2)
 {
-    return U(p1 * p2.get());
-}
-
-template <typename T, typename U>
-inline T operator*(T p1, U p2)
-{
-    return p2 * p1;
-}
-
-template <typename T>
-inline T operator*(T p1, T p2)
-{
-    return T(p1.get() * p2.get());
+    return p2 * p1; 
 }
 
 // risky end
@@ -67,6 +55,13 @@ inline T operator*(T p1, T p2)
                                                       \
         TypeName operator+(ValueType rhs) const       \
         { return TypeName(value + rhs); }             \
+                                                      \
+        TypeName operator*(TypeName rhs) const        \
+        { return TypeName(value * rhs.get()); }       \
+                                                      \
+        TypeName operator*(ValueType rhs) const       \
+        { return TypeName(value * rhs); }             \
+                                                      \
                                                       \
     private:                                          \
         ValueType value;                              \

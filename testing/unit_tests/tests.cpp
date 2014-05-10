@@ -18,6 +18,12 @@ namespace ut
 
 CONSTRAINED_TYPE(BoundedInt, int);
 
+template <typename T>
+bool isBoundedInt(T expr)
+{
+    return typeid(T) == typeid(BoundedInt);
+}
+
 TEST(ConstrainedType, shouldBeDefaultConstructible)
 {
     BoundedInt v;
@@ -91,6 +97,7 @@ TEST(ConstrainedType, shouldSupportAdditionOnTheRightHandValueOfUnderlyingType)
     BoundedInt v(7);
     BoundedInt v2 = v + 5;
     ASSERT_TRUE(v2 == 7 + 5);
+    ASSERT_TRUE(isBoundedInt(v + 5));
 }
 
 TEST(ConstrainedType, shouldSupportAdditionOnTheLeftHandValueOfUnderlyingType)
@@ -98,6 +105,7 @@ TEST(ConstrainedType, shouldSupportAdditionOnTheLeftHandValueOfUnderlyingType)
     BoundedInt v(7);
     BoundedInt v2 = 5 + v;
     ASSERT_TRUE(v2 == 7 + 5);
+    ASSERT_TRUE(isBoundedInt(5 + v));
 }
 
 TEST(ConstrainedType, shouldSupportMultiplication)
@@ -106,7 +114,23 @@ TEST(ConstrainedType, shouldSupportMultiplication)
     BoundedInt v2(6);
     
     ASSERT_TRUE(v1 * v2 == 5 * 6);
+    ASSERT_TRUE(isBoundedInt(v1 * v2));
 }
+
+TEST(ConstrainedType, shouldSupportMultiplicationByValueOfUnderlyingTypeOnTheRightHand)
+{
+    BoundedInt v1(5);
+    ASSERT_TRUE(v1 * 8 == 5 * 8);
+    ASSERT_TRUE(isBoundedInt(v1 * 8));
+}
+
+TEST(ConstrainedType, shouldSupportMultiplicationByValueOfUnderlyingTypeOnTheLeftHand)
+{
+    BoundedInt v1(5);
+    ASSERT_TRUE(8 * v1 == 5 * 8);
+    ASSERT_TRUE(isBoundedInt(8 * v1));
+}
+
 
 
 } // namespace ut

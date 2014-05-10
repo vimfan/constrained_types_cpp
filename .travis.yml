@@ -17,7 +17,7 @@ before_install:
   - sudo pip install cpp-coveralls
 
 script:
-    make
+    make VERBOSE=1
 
 after_success:
   - coveralls
