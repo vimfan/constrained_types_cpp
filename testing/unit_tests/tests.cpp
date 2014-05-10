@@ -131,6 +131,12 @@ TEST(ConstrainedType, shouldSupportMultiplicationByValueOfUnderlyingTypeOnTheLef
     ASSERT_TRUE(isBoundedInt(8 * v1));
 }
 
+TEST(ConstrainedType, shouldSupportDivision)
+{
+    BoundedInt v1(6);
+    BoundedInt v2(2);
+    ASSERT_TRUE(v1 / v2 == BoundedInt(3));
+}
 
 
 } // namespace ut

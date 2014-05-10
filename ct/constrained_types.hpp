@@ -62,6 +62,8 @@ inline U operator*(T p1, U p2)
         TypeName operator*(ValueType rhs) const       \
         { return TypeName(value * rhs); }             \
                                                       \
+        TypeName operator/(TypeName rhs) const        \
+        { return TypeName(value / rhs.get()); }       \
                                                       \
     private:                                          \
         ValueType value;                              \
