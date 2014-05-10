@@ -135,7 +135,15 @@ TEST(ConstrainedType, shouldSupportDivision)
 {
     BoundedInt v1(6);
     BoundedInt v2(2);
-    ASSERT_TRUE(v1 / v2 == BoundedInt(3));
+    ASSERT_TRUE(v1 / v2 == 3);
+    ASSERT_TRUE(isBoundedInt(v1 / v2));
+}
+
+TEST(ConstrainedType, shouldSupportDivisionByValueOfUnderlyingTypeOnTheRightHand)
+{
+    BoundedInt v1(6);
+    ASSERT_TRUE(v1 / 2 == 3);
+    ASSERT_TRUE(isBoundedInt(v1 / 2));
 }
 
 
