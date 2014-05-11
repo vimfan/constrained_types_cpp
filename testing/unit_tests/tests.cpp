@@ -128,9 +128,12 @@ TEST(ConstrainedType, shouldSupportMultiplication)
 {
     BoundedInt v1(5);
     BoundedInt v2(6);
-    
     ASSERT_TRUE(v1 * v2 == 5 * 6);
-    ASSERT_TRUE(isBoundedInt(v1 * v2));
+}
+
+TEST(ConstrainedType, shouldReturnValueOfUnderlyingTypeWhenMultiplyValuesOfConstrainedTypes)
+{
+    ASSERT_TRUE(isOfType<int>(BoundedInt(5) * BoundedInt(7)));
 }
 
 TEST(ConstrainedType, shouldSupportMultiplicationByValueOfUnderlyingTypeOnTheRightHand)
@@ -156,7 +159,6 @@ TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenMultiplyByUnderl
     BoundedInt v(8);
     ASSERT_TRUE(isOfType<int>(8 * v));
 }
-
 
 TEST(ConstrainedType, shouldSupportDivision)
 {
