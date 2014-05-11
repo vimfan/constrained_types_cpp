@@ -178,7 +178,12 @@ TEST(ConstrainedType, shouldSupportDivisionByValueOfUnderlyingTypeOnTheRightHand
 {
     BoundedInt v1(6);
     ASSERT_TRUE(v1 / 2 == 3);
-    ASSERT_TRUE(isBoundedInt(v1 / 2));
+}
+
+TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenDividingValueOfUnderlyingTypeOnTheRight)
+{
+    BoundedInt v1(6);
+    ASSERT_TRUE(isOfType<int>(v1 / 2));
 }
 
 TEST(ConstrainedType, shouldSupportDivisionOfUnderlyingTypeByTheConstrainedType)
