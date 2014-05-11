@@ -46,6 +46,9 @@
         ValueType operator/(ValueType rhs) const       \
         { return value / rhs; }             \
                                                       \
+        TypeName& operator++()                     \
+        { ++value; return *this; }                    \
+                                                      \
     private:                                          \
         ValueType value;                              \
     };                                                \

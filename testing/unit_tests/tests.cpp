@@ -204,6 +204,13 @@ TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenDividingValueOfU
     ASSERT_TRUE(isOfType<int>(2 / BoundedInt(2)));
 }
 
+TEST(ConstrainedType, shouldSupportPreIncrementation)
+{
+    BoundedInt v(3);
+    ++v;
+    ASSERT_EQ(4, v);
+}
+
 } // namespace ut
 
 } // namespace ct
