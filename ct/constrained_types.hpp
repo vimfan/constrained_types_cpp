@@ -22,11 +22,14 @@
                                                       \
         ValueType get() const { return value; }       \
                                                       \
-        bool operator==(const TypeName rhs) const     \
+        bool operator==(TypeName rhs) const           \
         { return rhs.value == value; }                \
                                                       \
         bool operator==(ValueType rhs) const          \
         { return rhs == value; }                      \
+                                                      \
+        bool operator!=(TypeName rhs) const           \
+        { return !(*this == rhs); }                   \
                                                       \
         ValueType operator+(TypeName rhs) const       \
         { return value + rhs.get(); }                 \

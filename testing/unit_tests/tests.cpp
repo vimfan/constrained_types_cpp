@@ -72,6 +72,13 @@ TEST(ConstrainedType, shouldBeEqualComparableNotEqual)
     ASSERT_FALSE(v1 == v2);
 }
 
+TEST(ConstrainedType, shouldBeInequalComparable)
+{
+    BoundedInt v1(5);
+    BoundedInt v2(7);
+    ASSERT_TRUE(v1 != v2);
+}
+
 TEST(ConstrainedType, shouldSupportAssignmentOfUnderlyingType)
 {
     BoundedInt v1;
