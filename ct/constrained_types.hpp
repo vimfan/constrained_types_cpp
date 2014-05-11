@@ -59,8 +59,8 @@
     inline ValueType operator+(ValueType p1, TypeName p2) \
     { return p1 + p2.get(); }                             \
                                                          \
-    inline TypeName operator*(ValueType p1, TypeName p2) \
-    { return TypeName(p1 * p2.get()); }                  \
+    inline ValueType operator*(ValueType p1, TypeName p2) \
+    { return p1 * p2.get(); }                  \
                                                          \
     struct DUMMY_##TypeName {}
 

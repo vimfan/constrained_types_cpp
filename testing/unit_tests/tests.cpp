@@ -149,8 +149,14 @@ TEST(ConstrainedType, shouldSupportMultiplicationByValueOfUnderlyingTypeOnTheLef
 {
     BoundedInt v1(5);
     ASSERT_TRUE(8 * v1 == 5 * 8);
-    ASSERT_TRUE(isBoundedInt(8 * v1));
 }
+
+TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenMultiplyByUnderlyingTypeOnTheLeft)
+{
+    BoundedInt v(8);
+    ASSERT_TRUE(isOfType<int>(8 * v));
+}
+
 
 TEST(ConstrainedType, shouldSupportDivision)
 {
