@@ -28,8 +28,8 @@
         bool operator==(ValueType rhs) const          \
         { return rhs == value; }                      \
                                                       \
-        TypeName operator+(TypeName rhs) const        \
-        { return TypeName(value + rhs.get()); }       \
+        ValueType operator+(TypeName rhs) const        \
+        { return value + rhs.get(); }       \
                                                       \
         ValueType operator+(ValueType rhs) const      \
         { return value + rhs; }                       \
@@ -50,8 +50,8 @@
         ValueType value;                              \
     };                                                \
                                                       \
-    inline TypeName operator/(ValueType p1, TypeName p2) \
-    { return TypeName(p1 / p2.get()); }                  \
+    inline ValueType operator/(ValueType p1, TypeName p2) \
+    { return p1 / p2.get(); }                  \
                                                          \
     inline bool operator==(ValueType p1, TypeName p2)    \
     { return p1 == p2.get(); }                           \

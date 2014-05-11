@@ -93,9 +93,16 @@ TEST(ConstrainedType, shouldSupportAddition)
 {
     BoundedInt v1(7);
     BoundedInt v2(9);
-    BoundedInt v3 = v1 + v2;
+    BoundedInt v3(v1 + v2);
 
     ASSERT_TRUE(v3 == v1.get() + v2.get());
+}
+
+TEST(ConstrainedType, shouldReturnValueOfUnderlyingTypeWhenAddingTwoValuesOfConstrainedTypes)
+{
+    BoundedInt v1(5);
+    BoundedInt v2(7);
+    ASSERT_TRUE(isOfType<int>(v1 + v2));
 }
 
 TEST(ConstrainedType, shouldSupportAdditionOnTheRightHandValueOfUnderlyingType)
@@ -190,7 +197,11 @@ TEST(ConstrainedType, shouldSupportDivisionOfUnderlyingTypeByTheConstrainedType)
 {
     BoundedInt v(3);
     ASSERT_TRUE(27 / v == 9);
-    ASSERT_TRUE(isBoundedInt(9 / v));
+}
+
+TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenDividingValueOfUnderlyingTypeOnTheLeft)
+{
+    ASSERT_TRUE(isOfType<int>(2 / BoundedInt(2)));
 }
 
 } // namespace ut
