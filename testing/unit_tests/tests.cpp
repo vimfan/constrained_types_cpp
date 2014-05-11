@@ -165,7 +165,13 @@ TEST(ConstrainedType, shouldSupportDivision)
     BoundedInt v1(6);
     BoundedInt v2(2);
     ASSERT_TRUE(v1 / v2 == 3);
-    ASSERT_TRUE(isBoundedInt(v1 / v2));
+}
+
+TEST(ConstrainedType, shouldReturnValueOfUnderlyingTypeWhenDividingTwoConstrainedTypes)
+{
+    BoundedInt v1(6);
+    BoundedInt v2(2);
+    ASSERT_TRUE(isOfType<int>(v1 / v2));
 }
 
 TEST(ConstrainedType, shouldSupportDivisionByValueOfUnderlyingTypeOnTheRightHand)
