@@ -227,6 +227,12 @@ TEST(ConstrainedType, shouldSupportPostincrementation)
     ASSERT_EQ(v1, 4);
 }
 
+TEST(ConstrainedType, shouldValueReturnedAfterPostIncrementationBeOfConstrainedType)
+{
+    BoundedInt v1(3);
+    ASSERT_TRUE(isOfType<BoundedInt>(v1++));
+}
+
 } // namespace ut
 
 } // namespace ct
