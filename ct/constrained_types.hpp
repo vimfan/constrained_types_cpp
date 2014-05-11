@@ -6,11 +6,6 @@
 
 // Seems to be risky, using traits should minimize or get rid of risk (e.g.
 // IsConstrainedType<U>), on the other hand could have huge impact on compilation times
-template <typename T, typename U>
-inline bool operator==(T p1, U p2)
-{
-    return p2 == p1;
-}
 
 template <typename T, typename U>
 inline U operator+(T p1, U p2)
@@ -70,7 +65,15 @@ inline U operator*(T p1, U p2)
                                                       \
     private:                                          \
         ValueType value;                              \
-    }
+    };                                                \
+                                                      \
+    inline TypeName operator/(ValueType p1, TypeName p2) \
+    { return TypeName(p1 / p2.get()); }                  \
+                                                         \
+    inline bool operator==(ValueType p1, TypeName p2)    \
+    { return p1 == p2.get(); }                           \
+                                                         \
+    struct DUMMY_##TypeName {}
 
 namespace ct
 {

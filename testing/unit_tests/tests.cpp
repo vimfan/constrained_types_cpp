@@ -146,6 +146,12 @@ TEST(ConstrainedType, shouldSupportDivisionByValueOfUnderlyingTypeOnTheRightHand
     ASSERT_TRUE(isBoundedInt(v1 / 2));
 }
 
+TEST(ConstrainedType, shouldSupportDivisionOfUnderlyingTypeByTheConstrainedType)
+{
+    BoundedInt v(3);
+    ASSERT_TRUE(27 / v == 9);
+    ASSERT_TRUE(isBoundedInt(9 / v));
+}
 
 } // namespace ut
 
