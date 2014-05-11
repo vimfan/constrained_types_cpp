@@ -31,8 +31,8 @@
         TypeName operator+(TypeName rhs) const        \
         { return TypeName(value + rhs.get()); }       \
                                                       \
-        TypeName operator+(ValueType rhs) const       \
-        { return TypeName(value + rhs); }             \
+        ValueType operator+(ValueType rhs) const      \
+        { return value + rhs; }                       \
                                                       \
         TypeName operator*(TypeName rhs) const        \
         { return TypeName(value * rhs.get()); }       \
@@ -56,8 +56,8 @@
     inline bool operator==(ValueType p1, TypeName p2)    \
     { return p1 == p2.get(); }                           \
                                                          \
-    inline TypeName operator+(ValueType p1, TypeName p2) \
-    { return TypeName(p1 + p2.get()); }                  \
+    inline ValueType operator+(ValueType p1, TypeName p2) \
+    { return p1 + p2.get(); }                             \
                                                          \
     inline TypeName operator*(ValueType p1, TypeName p2) \
     { return TypeName(p1 * p2.get()); }                  \

@@ -18,10 +18,16 @@ namespace ut
 
 CONSTRAINED_TYPE(BoundedInt, int);
 
+template <typename T, typename U>
+bool isOfType(U)
+{
+    return typeid(T) == typeid(U);
+}
+
 template <typename T>
 bool isBoundedInt(T expr)
 {
-    return typeid(T) == typeid(BoundedInt);
+    return isOfType<BoundedInt>(expr);
 }
 
 TEST(ConstrainedType, shouldBeDefaultConstructible)
@@ -95,17 +101,27 @@ TEST(ConstrainedType, shouldSupportAddition)
 TEST(ConstrainedType, shouldSupportAdditionOnTheRightHandValueOfUnderlyingType)
 {
     BoundedInt v(7);
-    BoundedInt v2 = v + 5;
+    BoundedInt v2(v + 5);
     ASSERT_TRUE(v2 == 7 + 5);
-    ASSERT_TRUE(isBoundedInt(v + 5));
+}
+
+TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenAddingValueOfUnderlyingTypeOnTheRight)
+{
+    BoundedInt v(7);
+    ASSERT_TRUE(isOfType<int>(v + 5));
 }
 
 TEST(ConstrainedType, shouldSupportAdditionOnTheLeftHandValueOfUnderlyingType)
 {
     BoundedInt v(7);
-    BoundedInt v2 = 5 + v;
+    BoundedInt v2(5 + v);
     ASSERT_TRUE(v2 == 7 + 5);
-    ASSERT_TRUE(isBoundedInt(5 + v));
+}
+
+TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenAddingValueOfUnderlyingTypeOnTheLeft)
+{
+    BoundedInt v(7);
+    ASSERT_TRUE(isOfType<int>(5 + v));
 }
 
 TEST(ConstrainedType, shouldSupportMultiplication)
