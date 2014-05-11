@@ -110,6 +110,12 @@ TEST(ConstrainedType, shouldSupportInequalityOperatorWithValueOfUnderlyingTypeOn
     ASSERT_TRUE(v != 6);
 }
 
+TEST(ConstrainedType, shouldSupportInequalityOperatorWithValueOfUnderlyingTypeOnLeft)
+{
+    BoundedInt v(5);
+    ASSERT_TRUE(6 != v);
+}
+
 TEST(ConstrainedType, shouldSupportAssignmentOfUnderlyingType)
 {
     BoundedInt v1;

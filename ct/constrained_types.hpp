@@ -75,6 +75,9 @@
     inline bool operator==(ValueType p1, TypeName p2)    \
     { return p1 == p2.get(); }                           \
                                                          \
+    inline bool operator!=(ValueType p1, TypeName p2)    \
+    { return p1 != p2.get(); }                           \
+                                                         \
     inline ValueType operator+(ValueType p1, TypeName p2) \
     { return p1 + p2.get(); }                             \
                                                          \
