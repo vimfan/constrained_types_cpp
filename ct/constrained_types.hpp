@@ -52,6 +52,9 @@
         TypeName operator++(int)                      \
         { return TypeName(value++); }                 \
                                                       \
+        TypeName& operator--()                     \
+        { --value; return *this; }                    \
+                                                      \
     private:                                          \
                                                       \
         ValueType value;                              \

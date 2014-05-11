@@ -233,6 +233,14 @@ TEST(ConstrainedType, shouldValueReturnedAfterPostIncrementationBeOfConstrainedT
     ASSERT_TRUE(isOfType<BoundedInt>(v1++));
 }
 
+TEST(ConstrainedType, shouldSupportPredecrementation)
+{
+    BoundedInt v(3);
+    --v;
+    ASSERT_EQ(2, v);
+}
+
+
 } // namespace ut
 
 } // namespace ct
