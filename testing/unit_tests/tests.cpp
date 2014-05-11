@@ -58,6 +58,20 @@ TEST(ConstrainedType, shouldBeCopyable)
     ASSERT_EQ(v1.get(), v3.get());
 }
 
+TEST(ConstrainedType, shouldBeEqualComparable)
+{
+    BoundedInt v1(5);
+    BoundedInt v2(5);
+    ASSERT_TRUE(v1 == v2);
+}
+
+TEST(ConstrainedType, shouldBeEqualComparableNotEqual)
+{
+    BoundedInt v1(5);
+    BoundedInt v2(7);
+    ASSERT_FALSE(v1 == v2);
+}
+
 TEST(ConstrainedType, shouldSupportAssignmentOfUnderlyingType)
 {
     BoundedInt v1;
@@ -254,9 +268,7 @@ TEST(ConstrainedType, shouldSupportPostdecrementation)
     BoundedInt v2 = v1--;
     ASSERT_EQ(v2, 3);
     ASSERT_EQ(v1, 2);
-
 }
-
 
 
 } // namespace ut
