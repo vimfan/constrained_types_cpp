@@ -219,6 +219,13 @@ TEST(ConstrainedType, shouldReturnTheSameObjectInCaseOfPreincrementation)
     ASSERT_EQ(vPtr1, vPtr2);
 }
 
+TEST(ConstrainedType, shouldSupportPostincrementation)
+{
+    BoundedInt v1(3);
+    BoundedInt v2 = v1++;
+    ASSERT_EQ(v2, 3);
+    ASSERT_EQ(v1, 4);
+}
 
 } // namespace ut
 

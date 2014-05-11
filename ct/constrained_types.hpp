@@ -49,7 +49,12 @@
         TypeName& operator++()                     \
         { ++value; return *this; }                    \
                                                       \
+        TypeName operator++(int)                      \
+        { const ValueType v = value;                  \
+          return TypeName(value++); }                 \
+                                                      \
     private:                                          \
+                                                      \
         ValueType value;                              \
     };                                                \
                                                       \
