@@ -78,12 +78,17 @@ TEST(ConstrainedType, shouldBeEqualComparableWithUnderlyingTypeOnTheRightHand)
     ASSERT_TRUE(v == 7);
 }
 
+TEST(ConstrainedType, shouldBeEqualComparableWithUnderlyingTypeOnTheLeftHand)
+{
+    BoundedInt v(7);
+    ASSERT_TRUE(7 == v);
+}
+
 TEST(ConstrainedType, shouldBeEqualComparableWithUnderlyingTypeOnTheRightHandNotEqual)
 {
     BoundedInt v(7);
     ASSERT_FALSE(v == 8);
 }
-
 
 TEST(ConstrainedType, shouldBeInequalComparable)
 {
@@ -99,6 +104,12 @@ TEST(ConstrainedType, shouldBeInequalComparableEqual)
     ASSERT_FALSE(v1 != v2);
 }
 
+TEST(ConstrainedType, shouldSupportInequalityOperatorWithValueOfUnderlyingTypeOnRight)
+{
+    BoundedInt v(5);
+    ASSERT_TRUE(v != 6);
+}
+
 TEST(ConstrainedType, shouldSupportAssignmentOfUnderlyingType)
 {
     BoundedInt v1;
@@ -110,24 +121,6 @@ TEST(ConstrainedType, shouldBePossibleToGetValueOfUnderlyingType)
 {
     BoundedInt v(5);
     ASSERT_EQ(v.get(), 5);
-}
-
-TEST(ConstrainedType, shouldSupportComparison)
-{
-    BoundedInt v(5);
-    ASSERT_TRUE(v == v);
-}
-
-TEST(ConstrainedType, shouldSupportComparisonToUnderlyingTypeWhenSimpleTypeIsOnLeft)
-{
-    BoundedInt v(7);
-    ASSERT_TRUE(7 == v);
-}
-
-TEST(ConstrainedType, shouldSupportComparisonToUnderlyingTypeWhenSimpleTypeIsOnRight)
-{
-    BoundedInt v(7);
-    ASSERT_TRUE(v == 7);
 }
 
 TEST(ConstrainedType, shouldSupportAddition)

@@ -31,6 +31,9 @@
         bool operator!=(TypeName rhs) const           \
         { return !(*this == rhs); }                   \
                                                       \
+        bool operator!=(ValueType rhs) const          \
+        { return value != rhs; }                      \
+                                                      \
         ValueType operator+(TypeName rhs) const       \
         { return value + rhs.get(); }                 \
                                                       \
