@@ -248,6 +248,15 @@ TEST(ConstrainedType, shouldReturnTheSameObjectInCaseOfPredecrementation)
     ASSERT_EQ(vPtr1, vPtr2);
 }
 
+TEST(ConstrainedType, shouldSupportPostdecrementation)
+{
+    BoundedInt v1(3);
+    BoundedInt v2 = v1--;
+    ASSERT_EQ(v2, 3);
+    ASSERT_EQ(v1, 2);
+
+}
+
 
 
 } // namespace ut

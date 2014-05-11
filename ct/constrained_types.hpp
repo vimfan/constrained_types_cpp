@@ -28,32 +28,35 @@
         bool operator==(ValueType rhs) const          \
         { return rhs == value; }                      \
                                                       \
-        ValueType operator+(TypeName rhs) const        \
-        { return value + rhs.get(); }       \
+        ValueType operator+(TypeName rhs) const       \
+        { return value + rhs.get(); }                 \
                                                       \
         ValueType operator+(ValueType rhs) const      \
         { return value + rhs; }                       \
                                                       \
-        ValueType operator*(TypeName rhs) const        \
-        { return value * rhs.get(); }       \
+        ValueType operator*(TypeName rhs) const       \
+        { return value * rhs.get(); }                 \
                                                       \
-        ValueType operator*(ValueType rhs) const       \
-        { return value * rhs; }             \
+        ValueType operator*(ValueType rhs) const      \
+        { return value * rhs; }                       \
                                                       \
-        ValueType operator/(TypeName rhs) const        \
-        { return value / rhs.get(); }       \
+        ValueType operator/(TypeName rhs) const       \
+        { return value / rhs.get(); }                 \
                                                       \
-        ValueType operator/(ValueType rhs) const       \
-        { return value / rhs; }             \
+        ValueType operator/(ValueType rhs) const      \
+        { return value / rhs; }                       \
                                                       \
-        TypeName& operator++()                     \
+        TypeName& operator++()                        \
         { ++value; return *this; }                    \
                                                       \
         TypeName operator++(int)                      \
         { return TypeName(value++); }                 \
                                                       \
-        TypeName& operator--()                     \
+        TypeName& operator--()                        \
         { --value; return *this; }                    \
+                                                      \
+        TypeName operator--(int)                      \
+        { return TypeName(value--); }                 \
                                                       \
     private:                                          \
                                                       \
