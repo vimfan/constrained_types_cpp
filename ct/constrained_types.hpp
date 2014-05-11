@@ -37,8 +37,8 @@
         TypeName operator*(TypeName rhs) const        \
         { return TypeName(value * rhs.get()); }       \
                                                       \
-        TypeName operator*(ValueType rhs) const       \
-        { return TypeName(value * rhs); }             \
+        ValueType operator*(ValueType rhs) const       \
+        { return value * rhs; }             \
                                                       \
         TypeName operator/(TypeName rhs) const        \
         { return TypeName(value / rhs.get()); }       \
