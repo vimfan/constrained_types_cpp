@@ -33,13 +33,16 @@ bool isBoundedInt(T expr)
     return isOfType<BoundedInt>(expr);
 }
 
+
+} // anonymous namespace
+
+// *** CONSTRUCTION
+
 TEST(ConstrainedTypeConstruction, shouldBeDefaultConstructible)
 {
     BoundedInt v;
     ASSERT_EQ(0, v.get());
 }
-
-} // anonymous namespace
 
 TEST(ConstrainedTypeConstruction, shouldBeConstructibleByValueOfUnderlyingType)
 {
@@ -62,6 +65,9 @@ TEST(ConstrainedTypeConstruction, shouldBeCopyable)
     ASSERT_EQ(v1.get(), v2.get());
     ASSERT_EQ(v1.get(), v3.get());
 }
+
+
+// *** RELATIONAL OPERATORS
 
 TEST(ConstrainedTypeRelational, shouldBeEqualComparable)
 {
@@ -121,6 +127,8 @@ TEST(ConstrainedTypeRelational, shouldSupportInequalityOperatorWithValueOfUnderl
     ASSERT_TRUE(6 != v);
 }
 
+// *** ASSIGNMENTS OPERATORS
+
 TEST(ConstrainedTypeAssignments, shouldSupportAssignmentOfUnderlyingType)
 {
     BoundedInt v1;
@@ -162,11 +170,14 @@ TEST(ConstrainedTypeAssignments, shouldReturnTheSameValueAsAssigned)
     ASSERT_TRUE((v1 = v2) == v2);
 }
 
-TEST(ConstrainedType, shouldBePossibleToGetValueOfUnderlyingType)
+TEST(ConstrainedTypeAssignments, shouldSupportAdditionAssignment)
 {
     BoundedInt v(5);
-    ASSERT_EQ(v.get(), 5);
+    v += BoundedInt(5);
+    ASSERT_EQ(v, 10);
 }
+
+// *** ARITHMETIC OPERATORS
 
 TEST(ConstrainedTypeArithmetic, shouldSupportAddition)
 {
@@ -283,6 +294,8 @@ TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenDividi
     ASSERT_TRUE(isOfType<int>(2 / BoundedInt(2)));
 }
 
+// *** INCREMENTATION OPERATORS
+
 TEST(ConstrainedTypeIncrementations, shouldSupportPreincrementation)
 {
     BoundedInt v(3);
@@ -334,6 +347,16 @@ TEST(ConstrainedTypeIncrementations, shouldSupportPostdecrementation)
     ASSERT_EQ(v2, 3);
     ASSERT_EQ(v1, 2);
 }
+
+
+// ** OTHER
+
+TEST(ConstrainedTypeOther, shouldBePossibleToGetValueOfUnderlyingType)
+{
+    BoundedInt v(5);
+    ASSERT_EQ(v.get(), 5);
+}
+
 
 
 } // namespace ut

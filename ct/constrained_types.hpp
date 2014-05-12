@@ -70,7 +70,11 @@
         TypeName operator--(int)                      \
         { return TypeName(value--); }                 \
                                                       \
-                                                      \
+        TypeName& operator+=(TypeName rhs)            \
+        {                                             \
+          value = TypeName(value + rhs.value).value;  \
+          return *this;                               \
+        }                                             \
                                                       \
     private:                                          \
                                                       \
