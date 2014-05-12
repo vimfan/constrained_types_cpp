@@ -123,6 +123,18 @@ TEST(ConstrainedType, shouldSupportAssignmentOfUnderlyingType)
     ASSERT_EQ(7, v1.get());
 }
 
+TEST(ConstrainedType, shouldReturnObjectOfConstrainedTypeWhenAssigningValueOfUnderlyingType)
+{
+    BoundedInt v1(5);
+    ASSERT_TRUE(isBoundedInt(v1 = 7));
+}
+
+TEST(ConstrainedType, shouldReturnObjectOfConstrainedTypeWhenAssigningValueOfUnderlyingTypeAndItNeedsToBeEqualToAssignedValue)
+{
+    BoundedInt v1(5);
+    ASSERT_TRUE((v1 = 8) == 8);
+}
+
 TEST(ConstrainedType, shouldSupportAssignment)
 {
     BoundedInt v1(5);
