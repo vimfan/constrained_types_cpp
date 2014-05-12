@@ -18,6 +18,9 @@ namespace ut
 
 CONSTRAINED_TYPE(BoundedInt, int);
 
+namespace
+{
+
 template <typename T, typename U>
 bool isOfType(U)
 {
@@ -30,25 +33,27 @@ bool isBoundedInt(T expr)
     return isOfType<BoundedInt>(expr);
 }
 
-TEST(ConstrainedType, shouldBeDefaultConstructible)
+TEST(ConstrainedTypeConstruction, shouldBeDefaultConstructible)
 {
     BoundedInt v;
     ASSERT_EQ(0, v.get());
 }
 
-TEST(ConstrainedType, shouldBeConstructibleByValueOfUnderlyingType)
+} // anonymous namespace
+
+TEST(ConstrainedTypeConstruction, shouldBeConstructibleByValueOfUnderlyingType)
 {
     int i = 5;
     BoundedInt v(i);
     ASSERT_EQ(5, v.get()); 
 }
 
-TEST(ConstrainedType, shouldBeConstructibleExplicitly)
+TEST(ConstrainedTypeConstruction, shouldBeConstructibleExplicitly)
 {
     ASSERT_FALSE((utils::HasNonExplicitCopyConstructor<BoundedInt, int, 5>::value));
 }
 
-TEST(ConstrainedType, shouldBeCopyable)
+TEST(ConstrainedTypeConstruction, shouldBeCopyable)
 {
     BoundedInt v1(9);
     BoundedInt v2 = v1;
@@ -58,84 +63,84 @@ TEST(ConstrainedType, shouldBeCopyable)
     ASSERT_EQ(v1.get(), v3.get());
 }
 
-TEST(ConstrainedType, shouldBeEqualComparable)
+TEST(ConstrainedTypeRelational, shouldBeEqualComparable)
 {
     BoundedInt v1(5);
     BoundedInt v2(5);
     ASSERT_TRUE(v1 == v2);
 }
 
-TEST(ConstrainedType, shouldBeEqualComparableNotEqual)
+TEST(ConstrainedTypeRelational, shouldBeEqualComparableNotEqual)
 {
     BoundedInt v1(5);
     BoundedInt v2(7);
     ASSERT_FALSE(v1 == v2);
 }
 
-TEST(ConstrainedType, shouldBeEqualComparableWithUnderlyingTypeOnTheRightHand)
+TEST(ConstrainedTypeRelational, shouldBeEqualComparableWithUnderlyingTypeOnTheRightHand)
 {
     BoundedInt v(7);
     ASSERT_TRUE(v == 7);
 }
 
-TEST(ConstrainedType, shouldBeEqualComparableWithUnderlyingTypeOnTheLeftHand)
+TEST(ConstrainedTypeRelational, shouldBeEqualComparableWithUnderlyingTypeOnTheLeftHand)
 {
     BoundedInt v(7);
     ASSERT_TRUE(7 == v);
 }
 
-TEST(ConstrainedType, shouldBeEqualComparableWithUnderlyingTypeOnTheRightHandNotEqual)
+TEST(ConstrainedTypeRelational, shouldBeEqualComparableWithUnderlyingTypeOnTheRightHandNotEqual)
 {
     BoundedInt v(7);
     ASSERT_FALSE(v == 8);
 }
 
-TEST(ConstrainedType, shouldBeInequalComparable)
+TEST(ConstrainedTypeRelational, shouldBeInequalComparable)
 {
     BoundedInt v1(5);
     BoundedInt v2(7);
     ASSERT_TRUE(v1 != v2);
 }
 
-TEST(ConstrainedType, shouldBeInequalComparableEqual)
+TEST(ConstrainedTypeRelational, shouldBeInequalComparableEqual)
 {
     BoundedInt v1(5);
     BoundedInt v2(5);
     ASSERT_FALSE(v1 != v2);
 }
 
-TEST(ConstrainedType, shouldSupportInequalityOperatorWithValueOfUnderlyingTypeOnRight)
+TEST(ConstrainedTypeRelational, shouldSupportInequalityOperatorWithValueOfUnderlyingTypeOnRight)
 {
     BoundedInt v(5);
     ASSERT_TRUE(v != 6);
 }
 
-TEST(ConstrainedType, shouldSupportInequalityOperatorWithValueOfUnderlyingTypeOnLeft)
+TEST(ConstrainedTypeRelational, shouldSupportInequalityOperatorWithValueOfUnderlyingTypeOnLeft)
 {
     BoundedInt v(5);
     ASSERT_TRUE(6 != v);
 }
 
-TEST(ConstrainedType, shouldSupportAssignmentOfUnderlyingType)
+TEST(ConstrainedTypeAssignments, shouldSupportAssignmentOfUnderlyingType)
 {
     BoundedInt v1;
     v1 = int(7);
     ASSERT_EQ(7, v1.get());
 }
 
-TEST(ConstrainedType, shouldReturnObjectOfConstrainedTypeWhenAssigningValueOfUnderlyingType)
+TEST(ConstrainedTypeAssignments, shouldReturnObjectOfConstrainedTypeWhenAssigningValueOfUnderlyingType)
 {
     BoundedInt v1(5);
     ASSERT_TRUE(isBoundedInt(v1 = 7));
 }
 
-TEST(ConstrainedType, shouldReturnObjectOfConstrainedTypeWhenAssigningValueOfUnderlyingTypeAndItNeedsToBeEqualToAssignedValue)
+TEST(ConstrainedTypeAssignments, shouldReturnObjectOfConstrainedTypeWhenAssigningValueOfUnderlyingTypeAndItNeedsToBeEqualToAssignedValue)
 {
     BoundedInt v1(5);
     ASSERT_TRUE((v1 = 8) == 8);
 }
 
-TEST(ConstrainedType, shouldSupportAssignment)
+TEST(ConstrainedTypeAssignments, shouldSupportAssignment)
 {
     BoundedInt v1(5);
     BoundedInt v2(7);
@@ -143,14 +148,14 @@ TEST(ConstrainedType, shouldSupportAssignment)
     ASSERT_TRUE(v1 == 7);
 }
 
-TEST(ConstrainedType, shouldReturnValueOfConstrainedTypeWhenAssign)
+TEST(ConstrainedTypeAssignments, shouldReturnValueOfConstrainedTypeWhenAssign)
 {
     BoundedInt v1(5);
     BoundedInt v2(7);
     ASSERT_TRUE(isBoundedInt(v1 = v2));
 }
 
-TEST(ConstrainedType, shouldReturnTheSameValueAsAssigned)
+TEST(ConstrainedTypeAssignments, shouldReturnTheSameValueAsAssigned)
 {
     BoundedInt v1(5);
     BoundedInt v2(7);
@@ -163,7 +168,7 @@ TEST(ConstrainedType, shouldBePossibleToGetValueOfUnderlyingType)
     ASSERT_EQ(v.get(), 5);
 }
 
-TEST(ConstrainedType, shouldSupportAddition)
+TEST(ConstrainedTypeArithmetic, shouldSupportAddition)
 {
     BoundedInt v1(7);
     BoundedInt v2(9);
@@ -172,120 +177,120 @@ TEST(ConstrainedType, shouldSupportAddition)
     ASSERT_TRUE(v3 == v1.get() + v2.get());
 }
 
-TEST(ConstrainedType, shouldReturnValueOfUnderlyingTypeWhenAddingTwoValuesOfConstrainedTypes)
+TEST(ConstrainedTypeArithmetic, shouldReturnValueOfUnderlyingTypeWhenAddingTwoValuesOfConstrainedTypes)
 {
     BoundedInt v1(5);
     BoundedInt v2(7);
     ASSERT_TRUE(isOfType<int>(v1 + v2));
 }
 
-TEST(ConstrainedType, shouldSupportAdditionOnTheRightHandValueOfUnderlyingType)
+TEST(ConstrainedTypeArithmetic, shouldSupportAdditionOnTheRightHandValueOfUnderlyingType)
 {
     BoundedInt v(7);
     BoundedInt v2(v + 5);
     ASSERT_TRUE(v2 == 7 + 5);
 }
 
-TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenAddingValueOfUnderlyingTypeOnTheRight)
+TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenAddingValueOfUnderlyingTypeOnTheRight)
 {
     BoundedInt v(7);
     ASSERT_TRUE(isOfType<int>(v + 5));
 }
 
-TEST(ConstrainedType, shouldSupportAdditionOnTheLeftHandValueOfUnderlyingType)
+TEST(ConstrainedTypeArithmetic, shouldSupportAdditionOnTheLeftHandValueOfUnderlyingType)
 {
     BoundedInt v(7);
     BoundedInt v2(5 + v);
     ASSERT_TRUE(v2 == 7 + 5);
 }
 
-TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenAddingValueOfUnderlyingTypeOnTheLeft)
+TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenAddingValueOfUnderlyingTypeOnTheLeft)
 {
     BoundedInt v(7);
     ASSERT_TRUE(isOfType<int>(5 + v));
 }
 
-TEST(ConstrainedType, shouldSupportMultiplication)
+TEST(ConstrainedTypeArithmetic, shouldSupportMultiplication)
 {
     BoundedInt v1(5);
     BoundedInt v2(6);
     ASSERT_TRUE(v1 * v2 == 5 * 6);
 }
 
-TEST(ConstrainedType, shouldReturnValueOfUnderlyingTypeWhenMultiplyValuesOfConstrainedTypes)
+TEST(ConstrainedTypeArithmetic, shouldReturnValueOfUnderlyingTypeWhenMultiplyValuesOfConstrainedTypes)
 {
     ASSERT_TRUE(isOfType<int>(BoundedInt(5) * BoundedInt(7)));
 }
 
-TEST(ConstrainedType, shouldSupportMultiplicationByValueOfUnderlyingTypeOnTheRightHand)
+TEST(ConstrainedTypeArithmetic, shouldSupportMultiplicationByValueOfUnderlyingTypeOnTheRightHand)
 {
     BoundedInt v1(5);
     ASSERT_TRUE(v1 * 8 == 5 * 8);
 }
 
-TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenMultiplyByUnderlyingTypeOnTheRight)
+TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenMultiplyByUnderlyingTypeOnTheRight)
 {
     BoundedInt v(8);
     ASSERT_TRUE(isOfType<int>(v * 8));
 }
 
-TEST(ConstrainedType, shouldSupportMultiplicationByValueOfUnderlyingTypeOnTheLeftHand)
+TEST(ConstrainedTypeArithmetic, shouldSupportMultiplicationByValueOfUnderlyingTypeOnTheLeftHand)
 {
     BoundedInt v1(5);
     ASSERT_TRUE(8 * v1 == 5 * 8);
 }
 
-TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenMultiplyByUnderlyingTypeOnTheLeft)
+TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenMultiplyByUnderlyingTypeOnTheLeft)
 {
     BoundedInt v(8);
     ASSERT_TRUE(isOfType<int>(8 * v));
 }
 
-TEST(ConstrainedType, shouldSupportDivision)
+TEST(ConstrainedTypeArithmetic, shouldSupportDivision)
 {
     BoundedInt v1(6);
     BoundedInt v2(2);
     ASSERT_TRUE(v1 / v2 == 3);
 }
 
-TEST(ConstrainedType, shouldReturnValueOfUnderlyingTypeWhenDividingTwoConstrainedTypes)
+TEST(ConstrainedTypeArithmetic, shouldReturnValueOfUnderlyingTypeWhenDividingTwoConstrainedTypes)
 {
     BoundedInt v1(6);
     BoundedInt v2(2);
     ASSERT_TRUE(isOfType<int>(v1 / v2));
 }
 
-TEST(ConstrainedType, shouldSupportDivisionByValueOfUnderlyingTypeOnTheRightHand)
+TEST(ConstrainedTypeArithmetic, shouldSupportDivisionByValueOfUnderlyingTypeOnTheRightHand)
 {
     BoundedInt v1(6);
     ASSERT_TRUE(v1 / 2 == 3);
 }
 
-TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenDividingValueOfUnderlyingTypeOnTheRight)
+TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenDividingValueOfUnderlyingTypeOnTheRight)
 {
     BoundedInt v1(6);
     ASSERT_TRUE(isOfType<int>(v1 / 2));
 }
 
-TEST(ConstrainedType, shouldSupportDivisionOfUnderlyingTypeByTheConstrainedType)
+TEST(ConstrainedTypeArithmetic, shouldSupportDivisionOfUnderlyingTypeByTheConstrainedType)
 {
     BoundedInt v(3);
     ASSERT_TRUE(27 / v == 9);
 }
 
-TEST(ConstrainedType, shouldSupportPromotionToUnderlyingTypeWhenDividingValueOfUnderlyingTypeOnTheLeft)
+TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenDividingValueOfUnderlyingTypeOnTheLeft)
 {
     ASSERT_TRUE(isOfType<int>(2 / BoundedInt(2)));
 }
 
-TEST(ConstrainedType, shouldSupportPreincrementation)
+TEST(ConstrainedTypeIncrementations, shouldSupportPreincrementation)
 {
     BoundedInt v(3);
     ++v;
     ASSERT_EQ(4, v);
 }
 
-TEST(ConstrainedType, shouldReturnTheSameObjectInCaseOfPreincrementation)
+TEST(ConstrainedTypeIncrementations, shouldReturnTheSameObjectInCaseOfPreincrementation)
 {
     BoundedInt v(3);
     BoundedInt* vPtr1 = &v;
@@ -293,7 +298,7 @@ TEST(ConstrainedType, shouldReturnTheSameObjectInCaseOfPreincrementation)
     ASSERT_EQ(vPtr1, vPtr2);
 }
 
-TEST(ConstrainedType, shouldSupportPostincrementation)
+TEST(ConstrainedTypeIncrementations, shouldSupportPostincrementation)
 {
     BoundedInt v1(3);
     BoundedInt v2 = v1++;
@@ -301,20 +306,20 @@ TEST(ConstrainedType, shouldSupportPostincrementation)
     ASSERT_EQ(v1, 4);
 }
 
-TEST(ConstrainedType, shouldValueReturnedAfterPostIncrementationBeOfConstrainedType)
+TEST(ConstrainedTypeIncrementations, shouldValueReturnedAfterPostIncrementationBeOfConstrainedType)
 {
     BoundedInt v1(3);
     ASSERT_TRUE(isOfType<BoundedInt>(v1++));
 }
 
-TEST(ConstrainedType, shouldSupportPredecrementation)
+TEST(ConstrainedTypeIncrementations, shouldSupportPredecrementation)
 {
     BoundedInt v(3);
     --v;
     ASSERT_EQ(2, v);
 }
 
-TEST(ConstrainedType, shouldReturnTheSameObjectInCaseOfPredecrementation)
+TEST(ConstrainedTypeIncrementations, shouldReturnTheSameObjectInCaseOfPredecrementation)
 {
     BoundedInt v(5);
     BoundedInt* vPtr1 = &v;
@@ -322,7 +327,7 @@ TEST(ConstrainedType, shouldReturnTheSameObjectInCaseOfPredecrementation)
     ASSERT_EQ(vPtr1, vPtr2);
 }
 
-TEST(ConstrainedType, shouldSupportPostdecrementation)
+TEST(ConstrainedTypeIncrementations, shouldSupportPostdecrementation)
 {
     BoundedInt v1(3);
     BoundedInt v2 = v1--;

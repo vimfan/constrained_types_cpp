@@ -70,6 +70,8 @@
         TypeName operator--(int)                      \
         { return TypeName(value--); }                 \
                                                       \
+                                                      \
+                                                      \
     private:                                          \
                                                       \
         ValueType value;                              \
