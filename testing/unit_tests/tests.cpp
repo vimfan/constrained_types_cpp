@@ -177,6 +177,12 @@ TEST(ConstrainedTypeAssignments, shouldSupportAdditionAssignment)
     ASSERT_EQ(v, 10);
 }
 
+TEST(ConstrainedTypeAssignments, shouldSupportAdditionAssignmentAndReturnTheModifiedValue)
+{
+    BoundedInt v(7);
+    ASSERT_EQ(&v, &(v += BoundedInt(9)));
+}
+
 // *** ARITHMETIC OPERATORS
 
 TEST(ConstrainedTypeArithmetic, shouldSupportAddition)
