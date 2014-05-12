@@ -14,6 +14,12 @@
             : value(val)                              \
         {}                                            \
                                                       \
+        TypeName& operator=(const TypeName& rhs)      \
+        {                                             \
+            value = rhs.value;                        \
+            return *this;                             \
+        }                                             \
+                                                      \
         TypeName& operator=(ValueType val)            \
         {                                             \
             value = val;                              \

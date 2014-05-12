@@ -123,6 +123,21 @@ TEST(ConstrainedType, shouldSupportAssignmentOfUnderlyingType)
     ASSERT_EQ(7, v1.get());
 }
 
+TEST(ConstrainedType, shouldSupportAssignment)
+{
+    BoundedInt v1(5);
+    BoundedInt v2(7);
+    v1 = v2;
+    ASSERT_TRUE(v1 == 7);
+}
+
+TEST(ConstrainedType, shouldReturnValueOfConstrainedTypeWhenAssign)
+{
+    BoundedInt v1(5);
+    BoundedInt v2(7);
+    ASSERT_TRUE(isBoundedInt(v1 = v2));
+}
+
 TEST(ConstrainedType, shouldBePossibleToGetValueOfUnderlyingType)
 {
     BoundedInt v(5);
@@ -295,6 +310,7 @@ TEST(ConstrainedType, shouldSupportPostdecrementation)
     ASSERT_EQ(v2, 3);
     ASSERT_EQ(v1, 2);
 }
+
 
 
 } // namespace ut
