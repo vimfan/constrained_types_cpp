@@ -183,6 +183,19 @@ TEST(ConstrainedTypeAssignments, shouldSupportAdditionAssignmentAndReturnTheModi
     ASSERT_EQ(&v, &(v += BoundedInt(9)));
 }
 
+TEST(ConstrainedTypeAssignments, shouldSupportAdditionAssignmentWithValueOfUnderlyingType)
+{
+    BoundedInt v(8);
+    v += 5;
+    ASSERT_EQ(v, 5 + 8);
+}
+
+TEST(ConstrainedTypeAssignments, shouldSupportAdditionAssignmentWithValueOfUnderlyingTypeAndReturnTheModifiedValue)
+{
+    BoundedInt v(8);
+    ASSERT_EQ(&v, &(v += 5));
+}
+
 // *** ARITHMETIC OPERATORS
 
 TEST(ConstrainedTypeArithmetic, shouldSupportAddition)
