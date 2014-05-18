@@ -221,7 +221,7 @@ TEST(ConstrainedTypeArithmetic, shouldSupportAdditionOnTheRightHandValueOfUnderl
     ASSERT_TRUE(v2 == 7 + 5);
 }
 
-TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenAddingValueOfUnderlyingTypeOnTheRight)
+TEST(ConstrainedTypeArithmetic, shouldPromoteToUnderlyingTypeWhenAddingValueOfUnderlyingTypeOnTheRight)
 {
     BoundedInt v(7);
     ASSERT_TRUE(isOfType<int>(v + 5));
@@ -234,7 +234,7 @@ TEST(ConstrainedTypeArithmetic, shouldSupportAdditionOnTheLeftHandValueOfUnderly
     ASSERT_TRUE(v2 == 7 + 5);
 }
 
-TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenAddingValueOfUnderlyingTypeOnTheLeft)
+TEST(ConstrainedTypeArithmetic, shouldPromoteToUnderlyingTypeWhenAddingValueOfUnderlyingTypeOnTheLeft)
 {
     BoundedInt v(7);
     ASSERT_TRUE(isOfType<int>(5 + v));
@@ -258,7 +258,7 @@ TEST(ConstrainedTypeArithmetic, shouldSupportMultiplicationByValueOfUnderlyingTy
     ASSERT_TRUE(v1 * 8 == 5 * 8);
 }
 
-TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenMultiplyByUnderlyingTypeOnTheRight)
+TEST(ConstrainedTypeArithmetic, shouldPromoteToUnderlyingTypeWhenMultiplyByUnderlyingTypeOnTheRight)
 {
     BoundedInt v(8);
     ASSERT_TRUE(isOfType<int>(v * 8));
@@ -270,7 +270,7 @@ TEST(ConstrainedTypeArithmetic, shouldSupportMultiplicationByValueOfUnderlyingTy
     ASSERT_TRUE(8 * v1 == 5 * 8);
 }
 
-TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenMultiplyByUnderlyingTypeOnTheLeft)
+TEST(ConstrainedTypeArithmetic, shouldPromoteToUnderlyingTypeWhenMultiplyByUnderlyingTypeOnTheLeft)
 {
     BoundedInt v(8);
     ASSERT_TRUE(isOfType<int>(8 * v));
@@ -296,7 +296,7 @@ TEST(ConstrainedTypeArithmetic, shouldSupportDivisionByValueOfUnderlyingTypeOnTh
     ASSERT_TRUE(v1 / 2 == 3);
 }
 
-TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenDividingValueOfUnderlyingTypeOnTheRight)
+TEST(ConstrainedTypeArithmetic, shouldPromoteToUnderlyingTypeWhenDividingValueOfUnderlyingTypeOnTheRight)
 {
     BoundedInt v1(6);
     ASSERT_TRUE(isOfType<int>(v1 / 2));
@@ -308,7 +308,7 @@ TEST(ConstrainedTypeArithmetic, shouldSupportDivisionOfUnderlyingTypeByTheConstr
     ASSERT_TRUE(27 / v == 9);
 }
 
-TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenDividingValueOfUnderlyingTypeOnTheLeft)
+TEST(ConstrainedTypeArithmetic, shouldPromoteToUnderlyingTypeWhenDividingValueOfUnderlyingTypeOnTheLeft)
 {
     ASSERT_TRUE(isOfType<int>(2 / BoundedInt(2)));
 }
@@ -334,7 +334,7 @@ TEST(ConstrainedTypeArithmetic, shouldSupportModulusOperationWhenUnderlyingTypeI
     ASSERT_TRUE(v2 % v1 == 10 % 8);
 }
 
-TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenApplyingOperatorModulus)
+TEST(ConstrainedTypeArithmetic, shouldPromoteToUnderlyingTypeWhenApplyingOperatorModulus)
 {
     BoundedInt v1(8);
     int v2(10);
