@@ -313,6 +313,13 @@ TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenDividi
     ASSERT_TRUE(isOfType<int>(2 / BoundedInt(2)));
 }
 
+TEST(ConstrainedTypeArithmetic, shouldSupportModulusOperation)
+{
+    BoundedInt v1(6);
+    BoundedInt v2(4);
+    ASSERT_TRUE(v1 % v2 == 6 % 4);
+}
+
 // *** INCREMENTATION OPERATORS
 
 TEST(ConstrainedTypeIncrementations, shouldSupportPreincrementation)
