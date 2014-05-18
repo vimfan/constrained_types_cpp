@@ -3,8 +3,6 @@ add_executable(
     utils_test.cpp
 )
 
-include_directories(../..)
-
 target_link_libraries(
     utils_tests
     gtest

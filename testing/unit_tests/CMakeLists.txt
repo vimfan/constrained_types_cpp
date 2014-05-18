@@ -4,8 +4,6 @@ add_executable(
     constraints.cpp
 )
 
-include_directories(../..)
-
 target_link_libraries(
     unit_tests
     gtest
@@ -13,6 +11,8 @@ target_link_libraries(
     gmock
     pthread
 )
+
+include_directories(../..)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "-g -O0 --coverage -fprofile-arcs -ftest-coverage")
