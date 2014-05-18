@@ -61,6 +61,9 @@
         ValueType operator%(TypeName rhs) const       \
         { return value % rhs.get(); }                 \
                                                       \
+        ValueType operator%(ValueType rhs) const      \
+        { return value % rhs; }                       \
+                                                      \
         TypeName& operator++()                        \
         { ++value; return *this; }                    \
                                                       \
