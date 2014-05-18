@@ -334,6 +334,15 @@ TEST(ConstrainedTypeArithmetic, shouldSupportModulusOperationWhenUnderlyingTypeI
     ASSERT_TRUE(v2 % v1 == 10 % 8);
 }
 
+TEST(ConstrainedTypeArithmetic, shouldSupportPromotionToUnderlyingTypeWhenApplyingOperatorModulus)
+{
+    BoundedInt v1(8);
+    int v2(10);
+    ASSERT_TRUE(isOfType<int>(v2 % v1));
+    ASSERT_TRUE(isOfType<int>(v1 % v2));
+    ASSERT_TRUE(isOfType<int>(v1 % v1));
+}
+
 // *** INCREMENTATION OPERATORS
 
 TEST(ConstrainedTypeIncrementations, shouldSupportPreincrementation)
