@@ -196,6 +196,13 @@ TEST(ConstrainedTypeAssignments, shouldSupportAdditionAssignmentWithValueOfUnder
     ASSERT_EQ(&v, &(v += 5));
 }
 
+TEST(ConstrainedTypeAssignments, shouldSupportSubstractionAssignment)
+{
+    BoundedInt v(5);
+    v -= BoundedInt(3);
+    ASSERT_EQ(v, 2);
+}
+
 // *** ARITHMETIC OPERATORS
 
 TEST(ConstrainedTypeArithmetic, shouldSupportAddition)

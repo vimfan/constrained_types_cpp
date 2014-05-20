@@ -86,20 +86,27 @@
         { value = TypeName(value + rhs).value;        \
           return *this; }                             \
                                                       \
+        TypeName& operator-=(TypeName rhs)            \
+        {                                             \
+          value = TypeName(value - rhs.value).value;  \
+          return *this;                               \
+        }                                             \
+                                                      \
+                                                      \
     private:                                          \
                                                       \
         ValueType value;                              \
     };                                                \
                                                       \
     inline ValueType operator/(ValueType p1, TypeName p2) \
-    { return p1 / p2.get(); }                  \
-                                                         \
-    inline bool operator==(ValueType p1, TypeName p2)    \
-    { return p1 == p2.get(); }                           \
-                                                         \
-    inline bool operator!=(ValueType p1, TypeName p2)    \
-    { return p1 != p2.get(); }                           \
-                                                         \
+    { return p1 / p2.get(); }                             \
+                                                          \
+    inline bool operator==(ValueType p1, TypeName p2)     \
+    { return p1 == p2.get(); }                            \
+                                                          \
+    inline bool operator!=(ValueType p1, TypeName p2)     \
+    { return p1 != p2.get(); }                            \
+                                                          \
     inline ValueType operator+(ValueType p1, TypeName p2) \
     { return p1 + p2.get(); }                             \
                                                           \
@@ -108,6 +115,7 @@
                                                           \
     inline ValueType operator%(ValueType p1, TypeName p2) \
     { return p1 % p2.get(); }                             \
+                                                          \
     struct DUMMY_##TypeName {}
 
 namespace ct
