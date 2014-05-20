@@ -203,6 +203,13 @@ TEST(ConstrainedTypeAssignments, shouldSupportSubstractionAssignment)
     ASSERT_EQ(v, 2);
 }
 
+TEST(ConstrainedTypeAssignments, shouldSupportSubstractionAssignmentWithValueOfUnderlyingType)
+{
+    BoundedInt v(5);
+    v -= 5;
+    ASSERT_EQ(v, 0);
+}
+
 // *** ARITHMETIC OPERATORS
 
 TEST(ConstrainedTypeArithmetic, shouldSupportAddition)

@@ -92,6 +92,10 @@
           return *this;                               \
         }                                             \
                                                       \
+        TypeName& operator-=(ValueType rhs)           \
+        { value = TypeName(value - rhs).value;        \
+          return *this;                               \
+        }                                             \
                                                       \
     private:                                          \
                                                       \
