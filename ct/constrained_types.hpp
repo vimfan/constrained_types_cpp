@@ -4,6 +4,17 @@
  * @date 04.05.2014
  */
 
+#define COMPOUND_ASSIGNMENT_OPERATOR(TypeName, ValueType, op)     \
+        TypeName& operator op##=(TypeName rhs)                    \
+        {                                                         \
+          value = TypeName (value op rhs.value).value;            \
+          return *this;                                           \
+        }                                                         \
+                                                                  \
+        TypeName& operator op##=(ValueType rhs)                   \
+        { value = TypeName (value op rhs).value;                   \
+          return *this; }                                         \
+
 #define CONSTRAINED_TYPE(TypeName, ValueType)         \
     class TypeName                                    \
     {                                                 \
@@ -76,26 +87,8 @@
         TypeName operator--(int)                      \
         { return TypeName(value--); }                 \
                                                       \
-        TypeName& operator+=(TypeName rhs)            \
-        {                                             \
-          value = TypeName(value + rhs.value).value;  \
-          return *this;                               \
-        }                                             \
-                                                      \
-        TypeName& operator+=(ValueType rhs)           \
-        { value = TypeName(value + rhs).value;        \
-          return *this; }                             \
-                                                      \
-        TypeName& operator-=(TypeName rhs)            \
-        {                                             \
-          value = TypeName(value - rhs.value).value;  \
-          return *this;                               \
-        }                                             \
-                                                      \
-        TypeName& operator-=(ValueType rhs)           \
-        { value = TypeName(value - rhs).value;        \
-          return *this;                               \
-        }                                             \
+        COMPOUND_ASSIGNMENT_OPERATOR(TypeName, ValueType, +) \
+        COMPOUND_ASSIGNMENT_OPERATOR(TypeName, ValueType, -) \
                                                       \
     private:                                          \
                                                       \

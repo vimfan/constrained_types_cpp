@@ -420,8 +420,6 @@ TEST(ConstrainedTypeOther, shouldBePossibleToGetValueOfUnderlyingType)
     ASSERT_EQ(v.get(), 5);
 }
 
-
-
 } // namespace ut
 
 } // namespace ct
