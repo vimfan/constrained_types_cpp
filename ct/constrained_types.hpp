@@ -112,6 +112,11 @@
         CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(*)              \
         CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(%)              \
         CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(/)              \
+        CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(&)              \
+        CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(|)              \
+        CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(^)              \
+        CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(<<)             \
+        CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(>>)             \
                                                              \
     private:                                                 \
         ValueType value;                                     \

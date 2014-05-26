@@ -252,6 +252,16 @@ TEST(ConstrainedTypeAssignments, shouldSupportDivisionAssignment)
     ASSERT_EQ(v, 1);
 }
 
+TEST(ConstrainedTypeAssignments, shouldSupportBitwiseOperationAssignments)
+{
+    BoundedInt v(8);
+    v &= 5;
+    v |= 10;
+    v ^= 9;
+    v <<= 10;
+    v >>= 11;
+};
+
 
 
 // *** ARITHMETIC OPERATORS
