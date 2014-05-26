@@ -224,6 +224,34 @@ TEST(ConstrainedTypeAssignments, shouldSupportMultiplicationAssignment)
     ASSERT_EQ(v, 25);
 }
 
+TEST(ConstrainedTypeAssignments, shouldSupportModulusAssignmentWithValueOfUnderlyingType)
+{
+    BoundedInt v(8);
+    v %= 3;
+    ASSERT_EQ(v, 8 % 3);
+}
+
+TEST(ConstrainedTypeAssignments, shouldSupportModulusAssignment)
+{
+    BoundedInt v(8);
+    v %= v;
+    ASSERT_EQ(v, 0);
+}
+
+TEST(ConstrainedTypeAssignments, shouldSupportDivisionAssignementWithValueOfUnderlyingType)
+{
+    BoundedInt v(8);
+    v /= 2;
+    ASSERT_EQ(v, 8 / 2);
+}
+
+TEST(ConstrainedTypeAssignments, shouldSupportDivisionAssignment)
+{
+    BoundedInt v(8);
+    v /= v;
+    ASSERT_EQ(v, 1);
+}
+
 
 
 // *** ARITHMETIC OPERATORS
