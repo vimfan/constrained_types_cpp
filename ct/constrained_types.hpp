@@ -36,10 +36,10 @@
 
 #define CT_RELATIONAL_OPERATOR(T, op)                         \
     bool operator op (T rhs) const                            \
-    { return rhs.value op value; }                            \
+    { return value op rhs.value; }                            \
                                                               \
     bool operator op (T::value_type rhs) const                \
-    { return rhs op value; }                                  \
+    { return value op rhs; }                                  \
 
 #define CT_RELATIONAL_OPERATOR_EXT(T, op)                     \
     inline bool operator op (T::value_type p1, T p2)          \
@@ -96,6 +96,10 @@
                                                              \
         CT_INNER_RELATIONAL_OPERATOR(==)                     \
         CT_INNER_RELATIONAL_OPERATOR(!=)                     \
+        CT_INNER_RELATIONAL_OPERATOR(>)                      \
+        CT_INNER_RELATIONAL_OPERATOR(<)                      \
+        CT_INNER_RELATIONAL_OPERATOR(<=)                     \
+        CT_INNER_RELATIONAL_OPERATOR(>=)                     \
                                                              \
         CT_INNER_BINARY_OPERATOR(+)                          \
         CT_INNER_BINARY_OPERATOR(*)                          \

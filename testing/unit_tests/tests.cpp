@@ -262,6 +262,20 @@ TEST(ConstrainedTypeAssignments, shouldSupportBitwiseOperationAssignments)
     v >>= 11;
 };
 
+TEST(ConstrainedTypeAssignments, shouldSupportRelationalOperators)
+{
+    BoundedInt v1(8);
+    BoundedInt v2(9);
+
+    ASSERT_TRUE(v2 > v1);
+
+    ASSERT_TRUE(v1 < v2);
+
+    ASSERT_TRUE(v2 >= v1);
+
+    ASSERT_TRUE(v1 <= v2);
+}
+
 
 
 // *** ARITHMETIC OPERATORS
