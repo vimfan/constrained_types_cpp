@@ -196,19 +196,35 @@ TEST(ConstrainedTypeAssignments, shouldSupportAdditionAssignmentWithValueOfUnder
     ASSERT_EQ(&v, &(v += 5));
 }
 
-TEST(ConstrainedTypeAssignments, shouldSupportSubstractionAssignment)
+TEST(ConstrainedTypeAssignments, shouldSupportSubtractionAssignment)
 {
     BoundedInt v(5);
     v -= BoundedInt(3);
     ASSERT_EQ(v, 2);
 }
 
-TEST(ConstrainedTypeAssignments, shouldSupportSubstractionAssignmentWithValueOfUnderlyingType)
+TEST(ConstrainedTypeAssignments, shouldSupportSubtractionAssignmentWithValueOfUnderlyingType)
 {
     BoundedInt v(5);
     v -= 5;
     ASSERT_EQ(v, 0);
 }
+
+TEST(ConstrainedTypeAssignments, shouldSupportMultiplicationAssignmentWithValueOfUnderlyingType)
+{
+    BoundedInt v(5);
+    v *= 5;
+    ASSERT_EQ(v, 25);
+}
+
+TEST(ConstrainedTypeAssignments, shouldSupportMultiplicationAssignment)
+{
+    BoundedInt v(5);
+    v *= v;
+    ASSERT_EQ(v, 25);
+}
+
+
 
 // *** ARITHMETIC OPERATORS
 

@@ -4,65 +4,65 @@
  * @date 04.05.2014
  */
 
-#define CT_COMPUND_ASSIGNMENT_OPERATOR(T, op) \
-    T& operator op##=(T rhs)                    \
+#define CT_COMPUND_ASSIGNMENT_OPERATOR(T, op)                 \
+    T& operator op##=(T rhs)                                  \
     {                                                         \
-      value = T (value op rhs.value).value;            \
+      value = T (value op rhs.value).value;                   \
       return *this;                                           \
     }                                                         \
                                                               \
-    T& operator op##=(T::value_type rhs)                   \
-    { value = T (value op rhs).value;                  \
+    T& operator op##=(T::value_type rhs)                      \
+    { value = T (value op rhs).value;                         \
       return *this;                                           \
     }                                                         \
 
-#define CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(op) \
+#define CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(op)              \
     CT_COMPUND_ASSIGNMENT_OPERATOR(type, op)
 
-#define CT_BINARY_OPERATOR(T, op)              \
-    T::value_type operator op (T rhs) const                \
+#define CT_BINARY_OPERATOR(T, op)                             \
+    T::value_type operator op (T rhs) const                   \
     { return value op rhs.get(); }                            \
                                                               \
-    T::value_type operator op(T::value_type rhs) const                \
+    T::value_type operator op(T::value_type rhs) const        \
     { return value op rhs; }                                  \
 
 
-#define CT_BINARY_OPERATOR_EXT(T, op)          \
-    inline T::value_type operator op(T::value_type p1, T p2)   \
+#define CT_BINARY_OPERATOR_EXT(T, op)                         \
+    inline T::value_type operator op(T::value_type p1, T p2)  \
     {                                                         \
         return p1 op p2.get();                                \
     }                                                         \
 
 
-#define CT_RELATIONAL_OPERATOR(T, op)          \
-    bool operator op (T rhs) const                     \
+#define CT_RELATIONAL_OPERATOR(T, op)                         \
+    bool operator op (T rhs) const                            \
     { return rhs.value op value; }                            \
                                                               \
-    bool operator op (T::value_type rhs) const                    \
+    bool operator op (T::value_type rhs) const                \
     { return rhs op value; }                                  \
 
-#define CT_RELATIONAL_OPERATOR_EXT(T, op)      \
-    inline bool operator op (T::value_type p1, T p2)       \
+#define CT_RELATIONAL_OPERATOR_EXT(T, op)                     \
+    inline bool operator op (T::value_type p1, T p2)          \
     { return p1 op p2.get(); }                                \
 
-#define CT_INNER_BINARY_OPERATOR(op) \
+#define CT_INNER_BINARY_OPERATOR(op)                          \
     CT_BINARY_OPERATOR(type, op)
     
-#define CT_INNER_RELATIONAL_OPERATOR(op) \
+#define CT_INNER_RELATIONAL_OPERATOR(op)                      \
     CT_RELATIONAL_OPERATOR(type, op)
 
-#define CT_PRE_CREMENT(T, op) \
-        T& operator op ()                               \
-        { op value; return *this; }                           \
+#define CT_PRE_CREMENT(T, op)                                 \
+    T& operator op ()                                         \
+    { op value; return *this; }                               \
 
-#define CT_INNER_PRE_CREMENT(op) \
+#define CT_INNER_PRE_CREMENT(op)                              \
     CT_PRE_CREMENT(type, op)
 
-#define CT_POST_CREMENT(T, op) \
-        T operator op (int)                             \
-        { return T(value op); }                        \
+#define CT_POST_CREMENT(T, op)                                \
+    T operator op (int)                                       \
+    { return T(value op); }                                   \
 
-#define CT_INNER_POST_CREMENT(op) \
+#define CT_INNER_POST_CREMENT(op)                             \
     CT_POST_CREMENT(type, op)
 
 #define CONSTRAINED_TYPE(TypeName, ValueType)                \
@@ -109,6 +109,7 @@
                                                              \
         CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(+)              \
         CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(-)              \
+        CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(*)              \
                                                              \
     private:                                                 \
         ValueType value;                                     \
