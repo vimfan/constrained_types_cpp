@@ -112,6 +112,9 @@
         TypeName operator-(void) const                       \
         { return TypeName(-value); }                         \
                                                              \
+        TypeName operator~(void) const                       \
+        { return TypeName(~value); }                         \
+                                                             \
         /* BITWISE OPERATORS */                              \
         CT_INNER_BINARY_OPERATOR(^)                          \
         CT_INNER_BINARY_OPERATOR(|)                          \

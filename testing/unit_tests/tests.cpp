@@ -513,6 +513,11 @@ TEST(ConstrainedTypeBitwiseOperators, shouldSupportRightShift)
     ASSERT_TRUE((v1 >> 3) == (1 >> 3));
 }
 
+TEST(ConstrainedTypeBitwiseOperators, shouldSupportComplementOperator)
+{
+    BoundedInt v(5);
+    ASSERT_TRUE((~v) == BoundedInt(~5));
+}
 
 // *** INCREMENTATION OPERATORS
 
