@@ -341,6 +341,14 @@ TEST(ConstrainedTypeArithmetic, shouldSupportSubtractionFromValueOfUnderlyingTyp
     ASSERT_TRUE(7 - v == 2);
 }
 
+TEST(ConstrainedTypeArithmetic, shouldSupportUnaryMinus)
+{
+    BoundedInt v(5);
+    BoundedInt v2(-v);
+
+    ASSERT_TRUE(v2 == -5);
+}
+
 TEST(ConstrainedTypeArithmetic, shouldSupportMultiplication)
 {
     BoundedInt v1(5);
