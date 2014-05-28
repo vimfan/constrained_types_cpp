@@ -41,15 +41,22 @@
     bool operator op (T::value_type rhs) const                \
     { return value op rhs; }                                  \
 
+
 #define CT_RELATIONAL_OPERATOR_EXT(T, op)                     \
     inline bool operator op (T::value_type p1, T p2)          \
     { return p1 op p2.get(); }                                \
+
+#define CT_LOGICAL_OPERATOR_EXT(T, op)                        \
+    CT_RELATIONAL_OPERATOR_EXT(T, op)
 
 #define CT_INNER_BINARY_OPERATOR(op)                          \
     CT_BINARY_OPERATOR(type, op)
     
 #define CT_INNER_RELATIONAL_OPERATOR(op)                      \
     CT_RELATIONAL_OPERATOR(type, op)
+
+#define CT_INNER_LOGICAL_OPERATOR(op)                         \
+    CT_INNER_RELATIONAL_OPERATOR(op)
 
 #define CT_PRE_CREMENT(T, op)                                 \
     T& operator op ()                                         \
@@ -64,6 +71,15 @@
 
 #define CT_INNER_POST_CREMENT(op)                             \
     CT_POST_CREMENT(type, op)
+
+#define CT_UNARY_OPERATOR(T, op)                             \
+    T::value_type operator op(void) const                    \
+    { return op value; }                                     \
+
+
+#define CT_INNER_UNARY_OPERATOR(op)                          \
+    CT_UNARY_OPERATOR(type, op)
+
 
 #define CONSTRAINED_TYPE(TypeName, ValueType)                \
     class TypeName                                           \
@@ -102,6 +118,9 @@
         CT_INNER_RELATIONAL_OPERATOR(<=)                     \
         CT_INNER_RELATIONAL_OPERATOR(>=)                     \
                                                              \
+        /* LOGICAL OPERATORS */                              \
+        CT_INNER_LOGICAL_OPERATOR(||)                        \
+                                                             \
         /* ARITHMETIC OPERATORS */                           \
         CT_INNER_BINARY_OPERATOR(+)                          \
         CT_INNER_BINARY_OPERATOR(-)                          \
@@ -109,11 +128,7 @@
         CT_INNER_BINARY_OPERATOR(/)                          \
         CT_INNER_BINARY_OPERATOR(%)                          \
                                                              \
-        TypeName operator-(void) const                       \
-        { return TypeName(-value); }                         \
-                                                             \
-        TypeName operator~(void) const                       \
-        { return TypeName(~value); }                         \
+        CT_INNER_UNARY_OPERATOR(-)                           \
                                                              \
         /* BITWISE OPERATORS */                              \
         CT_INNER_BINARY_OPERATOR(^)                          \
@@ -121,6 +136,8 @@
         CT_INNER_BINARY_OPERATOR(&)                          \
         CT_INNER_BINARY_OPERATOR(<<)                         \
         CT_INNER_BINARY_OPERATOR(>>)                         \
+                                                             \
+        CT_INNER_UNARY_OPERATOR(~)                           \
                                                              \
         /* (INC/DEC)REMENTATION OPERATORS */                 \
         CT_INNER_PRE_CREMENT(++)                             \
@@ -146,6 +163,8 @@
                                                              \
     CT_RELATIONAL_OPERATOR_EXT(TypeName, ==)                 \
     CT_RELATIONAL_OPERATOR_EXT(TypeName, !=)                 \
+                                                             \
+    CT_LOGICAL_OPERATOR_EXT(TypeName, ||)                    \
                                                              \
     CT_BINARY_OPERATOR_EXT(TypeName, +)                      \
     CT_BINARY_OPERATOR_EXT(TypeName, -)                      \

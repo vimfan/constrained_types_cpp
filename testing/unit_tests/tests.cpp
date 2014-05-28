@@ -573,6 +573,17 @@ TEST(ConstrainedTypeIncrementations, shouldSupportPostdecrementation)
     ASSERT_EQ(v1, 2);
 }
 
+// *** LOGICAL OPERATORS
+TEST(ConstrainedTypeLogicalOperators, shouldSupportLogicalOr)
+{
+    BoundedInt v1(1);
+    BoundedInt v2(3);
+
+    ASSERT_TRUE((v1 || v2) == (1 || 3));
+    ASSERT_TRUE((v1 || 3) == (1 || 3));
+    ASSERT_TRUE((1 || v2) == (1 || 3));
+}
+
 
 // ** OTHER
 
