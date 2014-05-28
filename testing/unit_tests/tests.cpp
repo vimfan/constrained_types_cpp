@@ -322,6 +322,25 @@ TEST(ConstrainedTypeArithmetic, shouldPromoteToUnderlyingTypeWhenAddingValueOfUn
     ASSERT_TRUE(isOfType<int>(5 + v));
 }
 
+TEST(ConstrainedTypeArithmetic, shouldSupportSubtractionOfUnderlyingTypeValue)
+{
+    BoundedInt v(5);
+    ASSERT_TRUE(v - 2 == 3);
+}
+
+TEST(ConstrainedTypeArithmetic, shouldSupportSubtraction)
+{
+    BoundedInt v1(5);
+    BoundedInt v2(3);
+    ASSERT_TRUE(v1 - v2 == 2);
+}
+
+TEST(ConstrainedTypeArithmetic, shouldSupportSubtractionFromValueOfUnderlyingType)
+{
+    BoundedInt v(5);
+    ASSERT_TRUE(7 - v == 2);
+}
+
 TEST(ConstrainedTypeArithmetic, shouldSupportMultiplication)
 {
     BoundedInt v1(5);
@@ -424,6 +443,64 @@ TEST(ConstrainedTypeArithmetic, shouldPromoteToUnderlyingTypeWhenApplyingOperato
     ASSERT_TRUE(isOfType<int>(v1 % v2));
     ASSERT_TRUE(isOfType<int>(v1 % v1));
 }
+
+// *** BITWISE OPERATORS
+
+TEST(ConstrainedTypeBitwiseOperators, shouldSupportXorWithValueOfUnderlyingTypeOnRight)
+{
+    BoundedInt v(8);
+    ASSERT_TRUE((v ^ 2) == (8 ^ 2));
+}
+
+TEST(ConstrainedTypeBitwiseOperators, shouldSupportXorWithValueOfUnderlyingTypeOnLeft)
+{
+    BoundedInt v(9);
+    ASSERT_TRUE((2 ^ v) == (9 ^ 2));
+}
+
+TEST(ConstrainedTypeBitwiseOperators, shouldSupportXor)
+{
+    BoundedInt v1(9);
+    BoundedInt v2(7);
+    ASSERT_TRUE((v1 ^ v2) == (9 ^ 7));
+}
+
+TEST(ConstrainedTypeBitwiseOperators, shouldSupportBitwiseOr)
+{
+    BoundedInt v1(2);
+    BoundedInt v2(4);
+
+    ASSERT_TRUE((v1 | v2) == (2 | 4));
+    ASSERT_TRUE((v1 | 4) == (2 | 4));
+    ASSERT_TRUE((2 | v2) == (2 | 4));
+}
+
+TEST(ConstrainedTypeBitwiseOperators, shouldSupportBitwiseAnd)
+{
+    BoundedInt v1(1);
+    BoundedInt v2(3);
+
+    ASSERT_TRUE((v1 & v2) == (1 & 3));
+    ASSERT_TRUE((v1 & 3) == (1 & 3));
+    ASSERT_TRUE((1 & v2) == (1 & 3));
+}
+
+TEST(ConstrainedTypeBitwiseOperators, shouldSupportLeftShift)
+{
+    BoundedInt v1(1);
+    BoundedInt v2(3);
+
+    ASSERT_TRUE((v1 << v2) == (1 << 3));
+    ASSERT_TRUE((1 << v2) == (1 << 3));
+    ASSERT_TRUE((v1 << 3) == (1 << 3));
+}
+
+TEST(ConstrainedTypeBitwiseOperators, shouldSupportRightShift)
+{
+    BoundedInt v1(1);
+    BoundedInt v2(3);
+}
+
 
 // *** INCREMENTATION OPERATORS
 

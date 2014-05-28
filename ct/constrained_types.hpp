@@ -94,6 +94,7 @@
                                                              \
         ValueType get() const { return value; }              \
                                                              \
+        /* RELATIONAL OPERATORS */                           \
         CT_INNER_RELATIONAL_OPERATOR(==)                     \
         CT_INNER_RELATIONAL_OPERATOR(!=)                     \
         CT_INNER_RELATIONAL_OPERATOR(>)                      \
@@ -101,16 +102,26 @@
         CT_INNER_RELATIONAL_OPERATOR(<=)                     \
         CT_INNER_RELATIONAL_OPERATOR(>=)                     \
                                                              \
+        /* ARITHMETIC OPERATORS */                           \
         CT_INNER_BINARY_OPERATOR(+)                          \
+        CT_INNER_BINARY_OPERATOR(-)                          \
         CT_INNER_BINARY_OPERATOR(*)                          \
         CT_INNER_BINARY_OPERATOR(/)                          \
         CT_INNER_BINARY_OPERATOR(%)                          \
                                                              \
+        /* BITWISE OPERATORS */                              \
+        CT_INNER_BINARY_OPERATOR(^)                          \
+        CT_INNER_BINARY_OPERATOR(|)                          \
+        CT_INNER_BINARY_OPERATOR(&)                          \
+        CT_INNER_BINARY_OPERATOR(<<)                         \
+                                                             \
+        /* (INC/DEC)REMENTATION OPERATORS */                 \
         CT_INNER_PRE_CREMENT(++)                             \
         CT_INNER_POST_CREMENT(++)                            \
         CT_INNER_PRE_CREMENT(--)                             \
         CT_INNER_POST_CREMENT(--)                            \
                                                              \
+        /* COMPOUND ASSIGNMENT OPERATORS */                  \
         CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(+)              \
         CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(-)              \
         CT_INNER_COMPUND_ASSIGNMENT_OPERATOR(*)              \
@@ -129,10 +140,16 @@
     CT_RELATIONAL_OPERATOR_EXT(TypeName, ==)                 \
     CT_RELATIONAL_OPERATOR_EXT(TypeName, !=)                 \
                                                              \
-    CT_BINARY_OPERATOR_EXT(TypeName, /)                      \
     CT_BINARY_OPERATOR_EXT(TypeName, +)                      \
+    CT_BINARY_OPERATOR_EXT(TypeName, -)                      \
     CT_BINARY_OPERATOR_EXT(TypeName, *)                      \
+    CT_BINARY_OPERATOR_EXT(TypeName, /)                      \
     CT_BINARY_OPERATOR_EXT(TypeName, %)                      \
+                                                             \
+    CT_BINARY_OPERATOR_EXT(TypeName, &)                      \
+    CT_BINARY_OPERATOR_EXT(TypeName, ^)                      \
+    CT_BINARY_OPERATOR_EXT(TypeName, |)                      \
+    CT_BINARY_OPERATOR_EXT(TypeName, <<)                     \
                                                              \
     struct DUMMY_##TypeName {}
 
