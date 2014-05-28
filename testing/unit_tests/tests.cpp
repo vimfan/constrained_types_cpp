@@ -584,6 +584,16 @@ TEST(ConstrainedTypeLogicalOperators, shouldSupportLogicalOr)
     ASSERT_TRUE((1 || v2) == (1 || 3));
 }
 
+TEST(ConstrainedTypeLogicalOperators, shouldSupportLogicalAnd)
+{
+    BoundedInt v1(1);
+    BoundedInt v2(3);
+
+    ASSERT_TRUE((v1 && v2) == (1 && 3));
+    ASSERT_TRUE((v1 && 3) == (1 && 3));
+    ASSERT_TRUE((1 && v2) == (1 && 3));
+}
+
 
 // ** OTHER
 

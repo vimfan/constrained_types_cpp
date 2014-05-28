@@ -120,6 +120,7 @@
                                                              \
         /* LOGICAL OPERATORS */                              \
         CT_INNER_LOGICAL_OPERATOR(||)                        \
+        CT_INNER_LOGICAL_OPERATOR(&&)                        \
                                                              \
         /* ARITHMETIC OPERATORS */                           \
         CT_INNER_BINARY_OPERATOR(+)                          \
@@ -165,6 +166,7 @@
     CT_RELATIONAL_OPERATOR_EXT(TypeName, !=)                 \
                                                              \
     CT_LOGICAL_OPERATOR_EXT(TypeName, ||)                    \
+    CT_LOGICAL_OPERATOR_EXT(TypeName, &&)                    \
                                                              \
     CT_BINARY_OPERATOR_EXT(TypeName, +)                      \
     CT_BINARY_OPERATOR_EXT(TypeName, -)                      \
