@@ -114,6 +114,7 @@
         CT_INNER_BINARY_OPERATOR(|)                          \
         CT_INNER_BINARY_OPERATOR(&)                          \
         CT_INNER_BINARY_OPERATOR(<<)                         \
+        CT_INNER_BINARY_OPERATOR(>>)                         \
                                                              \
         /* (INC/DEC)REMENTATION OPERATORS */                 \
         CT_INNER_PRE_CREMENT(++)                             \
@@ -150,6 +151,7 @@
     CT_BINARY_OPERATOR_EXT(TypeName, ^)                      \
     CT_BINARY_OPERATOR_EXT(TypeName, |)                      \
     CT_BINARY_OPERATOR_EXT(TypeName, <<)                     \
+    CT_BINARY_OPERATOR_EXT(TypeName, >>)                     \
                                                              \
     struct DUMMY_##TypeName {}
 
